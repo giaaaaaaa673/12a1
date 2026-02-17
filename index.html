@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>12A1 – ULTRA MODE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial;background:black;color:white;overflow-x:hidden}
+
+/* LOADING */
+#loading{
+position:fixed;inset:0;background:black;
+display:flex;align-items:center;justify-content:center;
+font-size:40px;color:cyan;z-index:99;
+}
+
+/* PARTICLE */
+canvas{position:fixed;top:0;left:0;z-index:-1}
+
+/* HERO */
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.neon{font-size:60px;text-shadow:0 0 15px cyan,0 0 40px cyan}
+#typing{font-size:28px;color:#00ffff;margin-top:10px}
+
+/* SLIDE */
+.slide{width:80%;margin:auto}
+.slide img{width:100%;border-radius:25px;box-shadow:0 0 30px cyan}
+
+/* TỔ */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;padding:40px}
+.to{
+padding:60px;background:#ffffff15;border-radius:25px;
+font-size:32px;text-align:center;
+box-shadow:0 0 25px cyan;transition:.4s
+}
+.to:hover{transform:scale(1.1);box-shadow:0 0 50px cyan}
+
+a{color:cyan;text-decoration:none}
+
+video{width:70%;border-radius:20px;box-shadow:0 0 30px cyan}
+
+section{text-align:center;padding:50px}
+footer{text-align:center;padding:20px}
+</style>
+</head>
+
+<body>
+
+<div id="loading">12A1 LOADING...</div>
+
+<canvas id="c"></canvas>
+
+<audio autoplay loop>
+<source src="nhac.mp3">
+</audio>
+
+<div class="hero">
+<h1 class="neon">🔥 LỚP 12A1 🔥</h1>
+<div id="typing"></div>
+</div>
+
+<section>
+<h1>📸 THANH XUÂN</h1>
+<div class="slide">
+<img id="img" src="a1.jpg">
+<img id="img" src="a2.jpg">
+<img id="img" src="a3.jpg">
+<img id="img" src="a4.jpg">
+<img id="img" src="a5.jpg">
+<img id="img" src="a6.jpg">
+<img id="img" src="a7.jpg">
+<img id="img" src="a8.jpg">
+<img id="img" src="a9.jpg">
+<img id="img" src="a10.jpg">
+<img id="img" src="a11.jpg">
+</div>
+</section>
+
+<section>
+<h1>🎬 VIDEO</h1>
+<video controls>
+<source src="lop12a1.mp4">
+</video>
+</section>
+
+<section>
+<h1>👥 4 TỔ</h1>
+<div class="grid">
+<div class="to"><a href="nhom1.html">⚡ TỔ 1</a></div>
+<div class="to"><a href="nhom2.html">🔥 TỔ 2</a></div>
+<div class="to"><a href="to3.html">💎 TỔ 3</a></div>
+<div class="to"><a href="nhom4.html">🚀 TỔ 4</a></div>
+</div>
+</section>
+
+<footer>💙 12A1 – Tất cả là ae chung 1 nhà 💙</footer>
+
+<script>
+// LOADING
+setTimeout(()=>loading.style.display="none",2000)
+
+// TYPING
+let text="Cyber Class – Thanh xuân không hối tiếc";
+let i=0;
+setInterval(()=>{
+typing.innerHTML=text.slice(0,i++);
+if(i>text.length)i=0;
+},150);
+
+// SLIDE
+let imgs=["lop1.jpg","lop2.jpg","lop3.jpg"];
+let s=0;
+setInterval(()=>{
+s=(s+1)%imgs.length;
+img.src=imgs[s];
+},3000);
+
+// PARTICLE
+const c=document.getElementById("c"),ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let p=[...Array(120)].map(()=>({
+x:Math.random()*c.width,
+y:Math.random()*c.height,
+vx:Math.random()*2,vy:Math.random()*2
+}));
+function draw(){
+ctx.clearRect(0,0,c.width,c.height);
+p.forEach(o=>{
+ctx.fillStyle="cyan";
+ctx.fillRect(o.x,o.y,2,2);
+o.x+=o.vx;o.y+=o.vy;
+if(o.x>c.width)o.x=0;
+if(o.y>c.height)o.y=0;
+});
+requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
